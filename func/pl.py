@@ -350,8 +350,8 @@ async def pllll(bot, message):
                         await tg_upload(message,video,a,thumb)
                     except Exception as e:
                         print(e)
-                alt_url = i["dublaj_url"]
-                alt_name = i["dub_name"]
+                alt_url = i["alt_url"]
+                alt_name = i["alt_name"]
                 if alt_url != "URL YOK":
                     try:
                         video = download_m3u8_with_ytdlp(alt_url, "ne",alt_name,"ne")
