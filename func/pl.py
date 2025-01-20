@@ -360,6 +360,7 @@ async def pllll(bot, message):
                     except Exception as e:
                         print(e)
             try:
+                await message.reply_text("Bitti")
                 os.remove(download_path)   
             except Exception as e:
                 print(e)        
