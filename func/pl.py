@@ -340,7 +340,7 @@ async def dss(bot, message):
     try:
         sirasi = len(dsira)
         await message.reply_text(f"İşlem Sıraya Eklendi...\n\nSıranız: {sirasi}")
-        Dsira.append(message)
+        dsira.append(message)
         if len(dsira) == 1:
             await pllll(bot, message)
     except Exception as e:
