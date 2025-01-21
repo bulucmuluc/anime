@@ -19,6 +19,7 @@ from hachoir.parser import createParser
 from config import LOG_CHANNEL, userbot
 import math
 sira = []
+dsira = []
  
 
 preferred_language = "tr" 
@@ -311,6 +312,10 @@ def download_m3u8_with_ytdlp(m3u8_url, output_dir,name,a):
 async def on_task_complete(bot, message: Message):
     if len(sira) > 0:
         await download_playlist(bot, sira[0])
+
+async def on_task_completed(bot, message: Message):
+    if len(dsira) > 0:
+        await download_playlist(bot, dsira[0])
         
 @Client.on_message(filters.text & filters.private)
 async def pl(bot, message):
@@ -331,6 +336,18 @@ async def pl(bot, message):
         await on_task_complete(bot, message)
 
 @Client.on_message(filters.document)
+async def dss(bot, message):
+    try:
+        sirasi = len(dsira)
+        await message.reply_text(f"İşlem Sıraya Eklendi...\n\nSıranız: {sirasi}")
+        Dsira.append(message)
+        if len(dsira) == 1:
+            await pllll(bot, message)
+    except Exception as e:
+        await message.reply_text(e)
+        del dsira[0]
+        await on_task_completed(bot, message)
+
 async def pllll(bot, message):
     a = await message.reply_text("Başladım")
     try:
@@ -361,7 +378,9 @@ async def pllll(bot, message):
                         print(e)
             try:
                 await message.reply_text("Bitti")
-                os.remove(download_path)   
+                os.remove(download_path)
+                del dsira[0]
+                await on_task_completed(bot, message)
             except Exception as e:
                 print(e)        
         except Exception as e:
