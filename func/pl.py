@@ -315,7 +315,7 @@ async def on_task_complete(bot, message: Message):
 
 async def on_task_completed(bot, message: Message):
     if len(dsira) > 0:
-        await download_playlist(bot, dsira[0])
+        await pllll(bot, dsira[0])
         
 @Client.on_message(filters.text & filters.private)
 async def pl(bot, message):
