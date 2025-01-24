@@ -208,7 +208,7 @@ async def tg_upload(message,video,a,thumb):
                 a,
                 start_time),
             duration=duration)
-        await a.edit("Yüklendi...")
+        
     elif file_size < 2093796556:
         copy = await message.reply_video(
             video=video,
@@ -225,7 +225,7 @@ async def tg_upload(message,video,a,thumb):
             await copy.copy(LOG_CHANNEL)
         except Exception as e:
             await message.reply_text(e)
-        await a.edit("Yüklendi...")
+        
     os.remove(video)
 
 
