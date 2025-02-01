@@ -184,7 +184,10 @@ def get_duration(filepath):
       return 0   
 
 async def tg_upload(message,video,a,thumb):
-    caption = f"{video}"
+    if "downloads/" in video:
+        caption = video.split("nloads/")[1]
+    else:
+        caption = video
     start_time = time.time()
     duration = get_duration(video)
     if thumb:
