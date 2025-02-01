@@ -273,8 +273,9 @@ def download_video(video_url, preferred_language):
 
 def download_m3u8_with_ytdlp(m3u8_url, output_dir,name,a):
     """Download an M3U8 video using yt-dlp."""
+    nname = f"downloads/{name}"
     ydl_opts = {
-        'outtmpl': name,
+        'outtmpl': nname,
         'format': 'best',
         'quiet': True,
         'merge_output_format': 'mp4',
