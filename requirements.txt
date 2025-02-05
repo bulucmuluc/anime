@@ -1,5 +1,5 @@
 yt-dlp
-python3-ffmpeg
+python-ffmpeg
 TgCrypto
 pyrogram
 hachoir
