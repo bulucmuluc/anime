@@ -1,0 +1,9 @@
+yt-dlp
+python3-ffmpeg
+TgCrypto
+pyrogram
+hachoir
+pillow
+python-dotenv
+pyromod
+motor
