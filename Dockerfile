@@ -1,15 +1,25 @@
-FROM python:latest
+# Python 3.9 tabanlı bir Docker imajı kullan
+FROM python:3.9
 
-RUN apt update && apt upgrade -y
-RUN apt install python3-pip aria2 ffmpeg -y
+# Çalışma dizinini belirle
+WORKDIR /app
 
-RUN cd /
-RUN git clone https://github.com/bulucmuluc/anime.git
+# Gerekli bağımlılıkları yükle (ffmpeg, aria2)
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    aria2 \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN cd /anime
-WORKDIR /anime
+# Python bağımlılıklarını yükle
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip3 install -U pip
-RUN pip3 install -U -r requirements.txt
+# Tüm proje dosyalarını kopyala
+COPY . .
 
-CMD python3 bot.py
+# Render Web Service için uygun portu belirle
+ENV PORT=10000
+EXPOSE 10000
+
+# Botu başlat (Render Web Service otomatik olarak bunu çalıştıracak)
+CMD ["python3", "bot.py"]
